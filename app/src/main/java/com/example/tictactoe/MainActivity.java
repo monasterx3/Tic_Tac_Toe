@@ -104,41 +104,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean check3InRow() {
         String[][] cell = new String[3][3];
-        for (int a = 0; a < 8; a++) {
-            String line = null;
-            switch (a) {
-                case 0: //top row
-                    line = cell[0][0] + cell[0][1] + cell[0][2];
-                    break;
-                case 1: //middle row
-                    line = cell[1][0] + cell[1][1] + cell[1][2];
-                    break;
-                case 2: //bottom row
-                    line = cell[2][0] + cell[2][1] + cell[2][2];
-                    break;
-                case 3: //first column
-                    line = cell[0][0] + cell[1][0] + cell[2][0];
-                    break;
-                case 4: //middle column
-                    line = cell[0][1] + cell[1][1] + cell[2][1];
-                    break;
-                case 5: //last column
-                    line = cell[0][2] + cell[1][2] + cell[2][2];
-                    break;
-                case 6: //forward diagonal
-                    line = cell[0][0] + cell[1][1] + cell[2][2];
-                    break;
-                case 7: //backward diagonal
-                    line = cell[2][0] + cell[1][1] + cell[0][2];
-                    break;
+        //for loop to check each button
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cell[i][j] = buttons[i][j].getText().toString();
             }
-            if (line.equals("XXX")) {
+        }//check for rows
+        for (int i = 0; i < 3; i++) {
+            if (cell[i][0].equals(cell[i][1]) && cell[i][0].equals(cell[i][2]) && !cell[i][0].equals("")) {
                 return true;
-            } else if (line.equals("OOO")) {
-                return false;
             }
-
+        }//check for columns
+        for (int i = 0; i < 3; i++) {
+            if (cell[0][i].equals(cell[1][i]) && cell[0][i].equals(cell[2][i]) && !cell[0][i].equals("")) {
+                return true;
+            }
+        }//check diagonal
+        if (cell[0][0].equals(cell[1][1]) && cell[0][0].equals(cell[2][2])&& !cell[0][0].equals("")) {
+            return true;
         }
-    return true; //I'm not sure if it should be true, i just had to return something
+        //check diagonal
+        if (cell[0][2].equals(cell[1][1]) && cell[0][2].equals(cell[2][0])&& !cell[0][2].equals("")) {
+            return true;
+        }
+        return false;
     }
 }
