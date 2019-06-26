@@ -80,11 +80,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(getApplicationContext(), "Player 1 Wins!", Toast.LENGTH_SHORT).show();
                 score1++; //increase player 1 score
                 player1.setText("Player1: " + score1);
+                
+                //clears out board after 3 in row 
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        buttons[i][j].setText("");
+                    }
+                }
             } else {
                 Toast.makeText(getApplicationContext(), "Player 2 Wins!", Toast.LENGTH_SHORT).show();
                 score2++;
                 player2.setText("Player2: " + score2);
-
+                
+                //clears out board
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        buttons[i][j].setText("");
+                    }
+                }
             }
         }
     }
