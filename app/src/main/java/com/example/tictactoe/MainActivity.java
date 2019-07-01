@@ -112,31 +112,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private boolean check3InRow() {
-        String[][] cell = new String[3][3];
-        //for loop to check each button
+    //Checks for win
+    private boolean check3InaRow() {
+        String[][] field = new String[3][3];
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                cell[i][j] = buttons[i][j].getText().toString();
+                field[i][j] = buttons[i][j].getText().toString();
             }
-        }//check for rows
+        }
+
         for (int i = 0; i < 3; i++) {
-            if (cell[i][0].equals(cell[i][1]) && cell[i][0].equals(cell[i][2]) && !cell[i][0].equals("")) {
+            if (field[i][0].equals(field[i][1])
+                    && field[i][0].equals(field[i][2])
+                    && !field[i][0].equals("")) {
                 return true;
             }
-        }//check for columns
+        }
+
         for (int i = 0; i < 3; i++) {
-            if (cell[0][i].equals(cell[1][i]) && cell[0][i].equals(cell[2][i]) && !cell[0][i].equals("")) {
+            if (field[0][i].equals(field[1][i])
+                    && field[0][i].equals(field[2][i])
+                    && !field[0][i].equals("")) {
                 return true;
             }
-        }//check diagonal
-        if (cell[0][0].equals(cell[1][1]) && cell[0][0].equals(cell[2][2])&& !cell[0][0].equals("")) {
+        }
+
+        if (field[0][0].equals(field[1][1])
+                && field[0][0].equals(field[2][2])
+                && !field[0][0].equals("")) {
             return true;
         }
-        //check diagonal
-        if (cell[0][2].equals(cell[1][1]) && cell[0][2].equals(cell[2][0])&& !cell[0][2].equals("")) {
+
+        if (field[0][2].equals(field[1][1])
+                && field[0][2].equals(field[2][0])
+                && !field[0][2].equals("")) {
             return true;
         }
+
         return false;
     }
 
@@ -156,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boardReset();
     }
 
-    //If theres a tie
+    //If there's a tie
     private void tie() {
         Toast.makeText(this, "It's a tie!", Toast.LENGTH_SHORT).show();
         boardReset();
